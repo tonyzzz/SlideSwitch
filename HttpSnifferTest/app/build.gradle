@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "jacky.test.httpsniffertest"
+        minSdkVersion 19
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+//    signingConfigs {    //签名设置
+//        debug {
+//            storeFile file("../debug.keystore")     //debug使用统一签名，可以解决高德等SDK的key依赖问题
+//        }
+//
+//        release {
+//            storeFile file("../android.keystore")   //release签名密码直接暴露
+//            storePassword "CtripAndroid"
+//            keyAlias "ctrip"
+//            keyPassword "CtripAndroid"
+//        }
+//    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+//            signingConfig signingConfigs.release
+        }
+    }
+
+    packagingOptions{
+        exclude 'META-INF/MANIFEST.MF'
+        exclude 'META-INF/NOTICE.TXT'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.TXT'
+        exclude 'META-INF/LICENSE.txt'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'io.netty:netty-all:4.0.23.Final'
+//    compile 'org.apache.commons:commons-lang3:3.1'
+//    compile 'commons-codec:commons-codec:1.7'
+    compile 'com.google.guava:guava:14.0.1'
+//    compile 'org.slf4j:slf4j-log4j12:1.7.2'
+//    compile 'org.littleshoot:dnssec4j:0.1.6'
+//    compile 'commons-io:commons-io:2.4'
+//    compile 'commons-cli:commons-cli:1.2'
+}
